@@ -87,6 +87,8 @@ packer.startup({
 
         use('liuchengxu/vista.vim')
 
+        use('xiyaowong/nvim-transparent')
+
 
 
     end,

@@ -47,5 +47,4 @@ let g:vista#renderer#icons = {
 
 
 
-
 ]])

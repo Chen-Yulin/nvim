@@ -26,4 +26,5 @@ require("cmake-tools").setup {
         long = { show = true, max_length = 40 }
     }
 }
+require("plugin-config.transparent")
 require('vimscript')
