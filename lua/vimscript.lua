@@ -44,6 +44,11 @@ let g:vista#renderer#icons = {
 \   "variable": "\uf71b",
 \  }
 
+nnoremap ss <Plug>(leap-forward-to)
+nnoremap xx <Plug>(leap-forward-till)
+
+
+noremap <F1><F1> :Dashboard<CR>
 
 
 

@@ -28,3 +28,6 @@ require("cmake-tools").setup {
 }
 require("plugin-config.transparent")
 require('vimscript')
+require('leap').add_default_mappings()
+require("plugin-config.dashboard")
+require("plugin-config.project")
