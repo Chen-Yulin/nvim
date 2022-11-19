@@ -17,7 +17,7 @@ db.custom_center = {
         action = "Telescope projects",
     },
     {
-        icon = " ",
+        icon = "  ",
         desc = "Edit Projects                       ",
         action = "edit ~/.local/share/nvim/project_nvim/project_history",
     },

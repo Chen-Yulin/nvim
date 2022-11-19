@@ -207,11 +207,7 @@ pluginKeys.cmp = function(cmp)
         -- 出现补全
         ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         -- 取消
-        ["<Left>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close()
-        }),
-        ["<Right>"] = cmp.mapping({
+        ["<Esc>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close()
         }),
@@ -221,12 +217,18 @@ pluginKeys.cmp = function(cmp)
         -- 下一个
         ["<C-Down>"] = cmp.mapping.select_next_item({
         }),
-        ["<Tab>"] = cmp.mapping.select_next_item({
-        }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
         -- 确认
         ["<CR>"] = cmp.mapping.confirm({
-            select = true,
-            behavior = cmp.ConfirmBehavior.Replace
+
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false
         }),
         -- 如果窗口内容太多，可以滚动
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),

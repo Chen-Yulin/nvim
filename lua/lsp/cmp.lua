@@ -21,6 +21,7 @@ cmp.setup({
         -- For vsnip users.
         { name = "vsnip" },
         { name = "nvim_lsp" },
+        { name = 'nvim_lsp_signature_help' },
 
         -- For luasnip users.
         --{ name = 'luasnip' },
@@ -38,9 +39,17 @@ cmp.setup({
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    completion = {
-        ---@usage The minimum length of a word to complete on.
-        keyword_length = 2,
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
     },
     -- 使用lspkind-nvim显示类型图标 (新增)
     formatting = require('lsp.ui').formatting
