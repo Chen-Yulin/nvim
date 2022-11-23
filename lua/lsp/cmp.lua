@@ -1,5 +1,15 @@
 local cmp = require("cmp")
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 cmp.setup({
+    completion = {
+        autocomplete = {
+            cmp.TriggerEvent.TextChanged,
+            cmp.TriggerEvent.InsertEnter,
+        },
+        completeopt = "menu,menuone,noinsert",
+    },
     -- 指定 snippet 引擎
     snippet = {
         expand = function(args)

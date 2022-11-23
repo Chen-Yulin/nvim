@@ -199,18 +199,15 @@ pluginKeys.cmp = function(cmp)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
     end
 
-    local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
+
     return {
         -- 出现补全
         ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         -- 取消
-        ["<Esc>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close()
-        }),
+        --["<Esc>"] = cmp.mapping({
+        --    i = cmp.mapping.abort(),
+        --    c = cmp.mapping.close()
+        --}),
         -- 上一个
         ["<C-Up>"] = cmp.mapping.select_prev_item({
         }),
