@@ -4,11 +4,11 @@ local t = function(str)
 end
 cmp.setup({
     completion = {
-        autocomplete = {
-            cmp.TriggerEvent.TextChanged,
-            cmp.TriggerEvent.InsertEnter,
-        },
-        completeopt = "menu,menuone,noinsert",
+        --autocomplete = {
+        --    cmp.TriggerEvent.TextChanged,
+        --    cmp.TriggerEvent.InsertEnter,
+        --},
+        -- completeopt = "menu,menuone,noinsert",
     },
     -- 指定 snippet 引擎
     snippet = {
