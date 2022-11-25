@@ -9,6 +9,7 @@ local lsp_installer = require("nvim-lsp-installer")
 
 local servers = {
     sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
+    clangd = require("lsp.config.clangd"),
 }
 -- 自动安装 Language Servers
 for name, _ in pairs(servers) do
@@ -34,19 +35,19 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 -- for clangd setup
-lspconfig.clangd.setup {
-    cmd = {
-
-        "clangd",
-
-        "--background-index",
-
-        "--suggest-missing-includes",
-
-        "--clang-tidy",
-
-    },
-    on_attach = on_attach,
-    capabilities = capabilities,
-
-}
+--lspconfig.clangd.setup {
+--    cmd = {
+--
+--        "clangd",
+--
+--        "--background-index",
+--
+--        "--suggest-missing-includes",
+--
+--        "--clang-tidy",
+--
+--    },
+--    on_attach = on_attach,
+--    capabilities = capabilities,
+--
+--}

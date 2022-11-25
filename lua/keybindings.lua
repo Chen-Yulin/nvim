@@ -84,6 +84,7 @@ map("n", "<C-w>", ":Bdelete!<CR>", opt)
 map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
 map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
 map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
+vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR>', { noremap = true })
 
 
 local pluginKeys = {}
@@ -180,15 +181,15 @@ pluginKeys.mapLSP = function(mapbuf)
 end
 
 -- lsp key binding
-map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
-map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
-map('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
-map("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
-map("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
-map("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-map("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
-map("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
-map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
+--map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
+--map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
+--map('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
+--map("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
+--map("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
+--map("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+--map("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+--map("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+--map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
 
 
 

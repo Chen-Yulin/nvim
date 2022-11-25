@@ -32,3 +32,6 @@ require('leap').add_default_mappings()
 require("plugin-config.dashboard")
 require("plugin-config.project")
 require("plugin-config.autopairs")
+
+vim.o.undofile = true
+require('fundo').setup()
