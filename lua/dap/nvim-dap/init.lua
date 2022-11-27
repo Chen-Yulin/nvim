@@ -71,14 +71,14 @@ dapui.setup({
         -- Display controls in this element
         element = "repl",
         icons = {
-            pause = "",
-            play = "",
+            pause = "",
+            play = "",
             step_into = "",
             step_over = "",
             step_out = "",
             step_back = "",
             run_last = "ﰇ",
-            terminate = "",
+            terminate = "",
         },
     },
     floating = {
