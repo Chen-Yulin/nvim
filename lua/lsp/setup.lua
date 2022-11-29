@@ -2,52 +2,98 @@
 -- { key: 语言 value: 配置文件 }
 -- key 必须为下列网址列出的名称
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
-local on_attach = require("lsp.lspconfig").on_attach
-local capabilities = require("lsp.lspconfig").capabilities
-local lspconfig = require("lspconfig")
-local lsp_installer = require("nvim-lsp-installer")
+local status, mason = pcall(require, "mason")
+if not status then
+    vim.notify("Can't find mason")
+    return
+end
 
+local status, mason_config = pcall(require, "mason-lspconfig")
+if not status then
+    vim.notify("Can't find mason-lspconfig")
+    return
+end
+
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+    vim.notify("没有找到 lspconfig")
+    return
+end
+
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+        },
+    },
+})
+
+mason_config.setup({
+    ensure_installed = {
+        "sumneko_lua",
+        "pyright",
+        "clangd",
+        "cmake",
+    },
+})
+
+--[[
 local servers = {
     sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
     clangd = require("lsp.config.clangd"),
 }
--- 自动安装 Language Servers
-for name, _ in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found then
-        if not server:is_installed() then
-            print("Installing " .. name)
-            server:install()
-        end
+
+for name, config in pairs(servers) do
+    if config ~= nil and type(config) == "table" then
+        -- 自定义初始化配置文件必须实现on_setup 方法
+        config.on_setup(lspconfig[name])
+        -- vim.notify(name.." init with customized config")
+    else
+        -- 使用默认参数
+        lspconfig[name].setup({})
+        vim.notify("init with default config")
     end
 end
+]]--
 
-lsp_installer.on_server_ready(function(server)
-    local config = servers[server.name]
-    if config == nil then
-        return
-    end
-    if config.on_setup then
-        config.on_setup(server)
-    else
-        server:setup({})
-    end
-end)
+local capabilities = require("lsp.lspconfig").capabilities
+local on_attach = require("lsp.lspconfig").on_attach
 
--- for clangd setup
---lspconfig.clangd.setup {
---    cmd = {
---
---        "clangd",
---
---        "--background-index",
---
---        "--suggest-missing-includes",
---
---        "--clang-tidy",
---
---    },
---    on_attach = on_attach,
---    capabilities = capabilities,
---
---}
+-- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
+lspconfig.clangd.setup{
+    cmd = {
+
+        "clangd",
+
+        "--background-index",
+
+        "--suggest-missing-includes",
+
+        "--clang-tidy",
+
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+lspconfig.sumneko_lua.setup{
+    settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+
+

@@ -52,5 +52,10 @@ M.disableFormat = function(client)
     end
 end
 
+M.on_attach = function (client, bufnr)
+    M.disableFormat(client)
+    M.keyAttach(bufnr)
+end
+
 
 return M
