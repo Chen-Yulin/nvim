@@ -2,6 +2,7 @@
 -- { key: 语言 value: 配置文件 }
 -- key 必须为下列网址列出的名称
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
+local util = require 'lspconfig.util'
 local status, mason = pcall(require, "mason")
 if not status then
     vim.notify("Can't find mason")
@@ -36,6 +37,7 @@ mason_config.setup({
         "pyright",
         "clangd",
         "cmake",
+        "svlangserver",
     },
 })
 
@@ -61,6 +63,7 @@ end
 local capabilities = require("lsp.lspconfig").capabilities
 local on_attach = require("lsp.lspconfig").on_attach
 
+-- local util = require 'lspconfig.util'
 -- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
 lspconfig.clangd.setup{
     cmd = {
@@ -95,5 +98,35 @@ lspconfig.sumneko_lua.setup{
   capabilities = capabilities,
 }
 
+lspconfig.svlangserver.setup{
+    -- https://github.com/imc-trading/svlangserver
+    on_init = function(client)
+        local path = client.workspace_folders[1].name
+
+        if path == '/path/to/project1' then
+        client.config.settings.systemverilog = {
+            includeIndexing     = {"**/*.{sv,svh}"},
+            excludeIndexing     = {"test/**/*.sv*"},
+            defines             = {},
+            launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+            formatCommand       = "/tools/verible-verilog-format"
+        }
+        elseif path == '/path/to/project2' then
+        client.config.settings.systemverilog = {
+            includeIndexing     = {"**/*.{sv,svh}"},
+            excludeIndexing     = {"sim/**/*.sv*"},
+            defines             = {},
+            launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+            formatCommand       = "/tools/verible-verilog-format"
+        }
+        end
+
+        client.notify("workspace/didChangeConfiguration")
+        return true
+    end,
+    capabilities = capabilities,
+    on_attach = on_attach;
+    
+}
 
 
