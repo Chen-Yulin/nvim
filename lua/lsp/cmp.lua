@@ -32,7 +32,8 @@ cmp.setup({
         -- For vsnip users.
         { name = "vsnip" },
         { name = "nvim_lsp" },
-        { name = 'nvim_lsp_signature_help' },
+        { name = 'orgmode' },
+        --{ name = 'nvim_lsp_signature_help' },
 
         -- For luasnip users.
         --{ name = 'luasnip' },

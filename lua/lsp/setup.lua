@@ -21,6 +21,7 @@ if not status then
     return
 end
 
+
 mason.setup({
     ui = {
         icons = {
@@ -33,7 +34,7 @@ mason.setup({
 
 mason_config.setup({
     ensure_installed = {
-        "sumneko_lua",
+        "lua_ls",
         "pyright",
         "clangd",
         "cmake",
@@ -86,7 +87,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.sumneko_lua.setup{
+lspconfig.lua_ls.setup{
     settings = {
     Lua = {
       diagnostics = {
@@ -127,6 +128,11 @@ lspconfig.svlangserver.setup{
     capabilities = capabilities,
     on_attach = on_attach;
     
+}
+
+lspconfig.pyright.setup{
+    capabilities = capabilities,
+    on_attach = on_attach;
 }
 
 

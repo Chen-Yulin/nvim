@@ -107,12 +107,21 @@ packer.startup({
                 }
             end
         }
-        use('hrsh7th/cmp-nvim-lsp-signature-help')
+        --use('hrsh7th/cmp-nvim-lsp-signature-help')
+        use {
+            "ray-x/lsp_signature.nvim",
+        }
         use {
             'kevinhwang91/nvim-fundo', requires = 'kevinhwang91/promise-async',
             run = function() require('fundo').install() end
         }
         use('mbbill/undotree')
+        
+        use {'nvim-orgmode/orgmode',
+            config = function()
+                require('orgmode').setup{}
+            end
+        }
 
 
 
@@ -123,7 +132,7 @@ packer.startup({
         max_jobs = 16,
         -- 自定义源
         git = {
-            clone_timout = 512,
+            clone_timout = 2048,
             default_url_format = "git@github.com:%s"
             --default_url_format = "https://hub.fastgit.xyz/%s",
             --default_url_format = "https://mirror.ghproxy.com/https://github.com/%s",

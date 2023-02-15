@@ -3,6 +3,11 @@ local present, lspconfig = pcall(require, "lspconfig")
 if not present then
     return
 end
+local status, signature = pcall(require, "lsp_signature")
+if not status then
+    vim.notify("没有找到 lsp_signature")
+    return
+end
 
 
 local M = {}
@@ -55,6 +60,13 @@ end
 M.on_attach = function (client, bufnr)
     M.disableFormat(client)
     M.keyAttach(bufnr)
+    signature.on_attach({
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {
+            border = "rounded"
+        },
+        hint_prefix = " "
+    }, bufnr)
 end
 
 

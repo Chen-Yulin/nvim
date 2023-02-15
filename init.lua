@@ -35,3 +35,4 @@ require("plugin-config.autopairs")
 
 vim.o.undofile = true
 require('fundo').setup()
+require("plugin-config.org")
