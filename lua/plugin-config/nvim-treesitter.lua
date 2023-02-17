@@ -7,12 +7,12 @@ end
 treesitter.setup({
     -- 安装 language parser
     -- :TSInstallInfo 命令查看支持的语言
-    ensure_installed = { "c", "vim", "lua", "cpp", "verilog" },
+    ensure_installed = { "c", "vim", "lua", "cpp", "verilog", "org" },
     -- 启用代码高亮模块
     highlight = {
         enable = true,
         disable = { "latex" },
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = {'org'},
     },
     -- 启用增量选择模块
     incremental_selection = {
