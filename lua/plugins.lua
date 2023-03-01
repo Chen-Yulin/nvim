@@ -122,6 +122,7 @@ packer.startup({
                 require('orgmode').setup{}
             end
         }
+        use { "untitled-ai/jupyter_ascending.vim" }
 
 
 

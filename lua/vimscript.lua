@@ -1,6 +1,8 @@
 vim.cmd([[
 set wrap
 
+set guicursor=i:block-iCursor-blinkon0,v:block-vCursor
+
 
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
