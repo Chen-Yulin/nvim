@@ -15,7 +15,11 @@ require('nvim-treesitter.configs').setup {
 }
 
 require('orgmode').setup({
-    org_agenda_files = {'~/OneDrive/Common/org/*'},
+    org_agenda_files = {
+                        '~/OneDrive/Common/org/*',
+                        '~/OneDrive/Common/org/JI2023Innovation/*',
+                        '~/OneDrive/Common/org/SR/*'
+                        },
     org_default_notes_file = '~/OneDrive/Common/refile.org',
     org_todo_keywords = {'TODO','NEXT','|','DONE','DELEGATED'},
     org_todo_keyword_face = {
