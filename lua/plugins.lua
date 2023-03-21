@@ -123,6 +123,7 @@ packer.startup({
             end
         }
         use { "untitled-ai/jupyter_ascending.vim" }
+        use { "epwalsh/obsidian.nvim"}
 
 
 
