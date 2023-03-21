@@ -88,12 +88,12 @@ packer.startup({
 
         use('liuchengxu/vista.vim')
 
-        use('xiyaowong/nvim-transparent')
 
+        use('Chen-Yulin/transparent.nvim')
         -- vimLeap
         use('ggandor/leap.nvim')
 
-        use("glepnir/dashboard-nvim")
+        use("Chen-Yulin/dashboard-nvim")
         -- project
         use("ahmedkhalf/project.nvim")
         -- which key
