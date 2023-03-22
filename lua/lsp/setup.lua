@@ -126,18 +126,22 @@ lspconfig.svlangserver.setup{
         return true
     end,
     capabilities = capabilities,
-    on_attach = on_attach;
-    
+    on_attach = on_attach,
 }
 
 lspconfig.pyright.setup{
     capabilities = capabilities,
-    on_attach = on_attach;
+    on_attach = on_attach,
 }
 
 lspconfig.html.setup{
     capabilities = capabilities,
-    on_attach = on_attach;
+    on_attach = on_attach,
+}
+
+lspconfig.marksman.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
 }
 
 
