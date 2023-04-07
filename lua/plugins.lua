@@ -124,7 +124,7 @@ packer.startup({
         }
         use { "untitled-ai/jupyter_ascending.vim" }
         use { "epwalsh/obsidian.nvim"}
-
+        use {"github/copilot.vim"}
 
 
     end,
