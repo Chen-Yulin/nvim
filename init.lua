@@ -37,4 +37,4 @@ vim.o.undofile = true
 require('fundo').setup()
 require("plugin-config.org")
 require('plugin-config.obsidian')
-require('plugin-config.git-conflict')
+-- require('plugin-config.git-conflict')

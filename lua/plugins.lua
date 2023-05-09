@@ -125,9 +125,10 @@ packer.startup({
         use { "untitled-ai/jupyter_ascending.vim" }
         use { "epwalsh/obsidian.nvim"}
         -- use {"github/copilot.vim"}
-        use {'akinsho/git-conflict.nvim', tag = "*", config = function()
-            require('git-conflict').setup()
-        end}
+        --use {'akinsho/git-conflict.nvim', tag = "*", config = function()
+        --    require('git-conflict').setup()
+        --end}
+        use { 'tpope/vim-fugitive' }
 
 
     end,
