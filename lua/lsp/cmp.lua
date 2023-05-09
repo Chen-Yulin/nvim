@@ -9,7 +9,7 @@ cmp.setup({
         --    cmp.TriggerEvent.InsertEnter,
         --},
         completeopt = "menu,menuone,preview,noinsert,noselect",
-        keyword_length = 1,
+        keyword_length = 2,
     },
     -- 指定 snippet 引擎
     snippet = {
@@ -31,7 +31,7 @@ cmp.setup({
     sources = cmp.config.sources({
         -- For vsnip users.
         { name = "vsnip" },
-        { name = "nvim_lsp" },
+        { name = "nvim_lsp", trigger_characters={"."}},
         { name = 'orgmode' },
         --{ name = 'nvim_lsp_signature_help' },
 
