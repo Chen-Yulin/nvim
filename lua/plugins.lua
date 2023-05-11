@@ -124,7 +124,9 @@ packer.startup({
         }
         use { "untitled-ai/jupyter_ascending.vim" }
         use { "epwalsh/obsidian.nvim"}
+        -- some ai plugins
         use {"github/copilot.vim"}
+        use {"hrsh7th/cmp-copilot"}
         --use {'akinsho/git-conflict.nvim', tag = "*", config = function()
         --    require('git-conflict').setup()
         --end}

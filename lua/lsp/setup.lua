@@ -41,7 +41,8 @@ mason_config.setup({
         "svlangserver",
         "html",
         "marksman",
-        "omnisharp"
+        "omnisharp",
+        "ltex"
     },
 })
 
@@ -143,6 +144,10 @@ lspconfig.html.setup{
 }
 
 lspconfig.marksman.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+lspconfig.ltex.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 }

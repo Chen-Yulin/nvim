@@ -33,6 +33,7 @@ cmp.setup({
         { name = "vsnip" },
         { name = "nvim_lsp", trigger_characters={"."}},
         { name = 'orgmode' },
+        { name = 'copilot'}
         --{ name = 'nvim_lsp_signature_help' },
 
         -- For luasnip users.

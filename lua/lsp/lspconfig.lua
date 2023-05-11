@@ -67,6 +67,7 @@ M.on_attach = function (client, bufnr)
         },
         hint_prefix = " "
     }, bufnr)
+    -- only for omnisharp 
     if client.name == 'omnisharp' then
         local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
         for i, v in ipairs(tokenModifiers) do
