@@ -3,20 +3,20 @@
 -- key 必须为下列网址列出的名称
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local util = require 'lspconfig.util'
-local status, mason = pcall(require, "mason")
-if not status then
+local masonStatus, mason = pcall(require, "mason")
+if not masonStatus then
     vim.notify("Can't find mason")
     return
 end
 
-local status, mason_config = pcall(require, "mason-lspconfig")
-if not status then
+local masonconfigStatus, mason_config = pcall(require, "mason-lspconfig")
+if not masonconfigStatus then
     vim.notify("Can't find mason-lspconfig")
     return
 end
 
-local status, lspconfig = pcall(require, "lspconfig")
-if not status then
+local lspconfigStatus, lspconfig = pcall(require, "lspconfig")
+if not lspconfigStatus then
     vim.notify("没有找到 lspconfig")
     return
 end
@@ -147,10 +147,10 @@ lspconfig.marksman.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 }
-lspconfig.ltex.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
+--lspconfig.ltex.setup{
+--    capabilities = capabilities,
+--    on_attach = on_attach,
+--}
 
 lspconfig.omnisharp.setup {
     cmd = { "dotnet", "/home/cyl/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },

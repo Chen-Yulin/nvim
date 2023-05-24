@@ -35,6 +35,10 @@ M.capabilities.textDocument.completion.completionItem = {
         },
     },
 }
+M.capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 
 M.keyAttach = function(bufnr)

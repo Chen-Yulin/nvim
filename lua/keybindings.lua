@@ -86,6 +86,10 @@ map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
 map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR>', { noremap = true })
 
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
 
 local pluginKeys = {}
 
@@ -146,8 +150,8 @@ pluginKeys.mapLSP = function(mapbuf)
   --]]
     mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
     -- go xxx
-    mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
-    --mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+    -- mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
+    mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
     --[[
   Lspsaga 替换 gh
   mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)

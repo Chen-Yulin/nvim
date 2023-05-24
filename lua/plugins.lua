@@ -131,6 +131,7 @@ packer.startup({
         --    require('git-conflict').setup()
         --end}
         use { 'tpope/vim-fugitive' }
+        use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
 
     end,
