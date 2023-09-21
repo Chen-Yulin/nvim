@@ -130,8 +130,13 @@ packer.startup({
         --use {'akinsho/git-conflict.nvim', tag = "*", config = function()
         --    require('git-conflict').setup()
         --end}
+        --git diff
         use { 'tpope/vim-fugitive' }
+        -- code folding
         use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+        -- formatter
+        use { 'mhartington/formatter.nvim' }
+        
 
 
     end,
