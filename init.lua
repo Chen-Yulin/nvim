@@ -1,3 +1,19 @@
+-- for neovide
+if vim.g.neovide then
+    vim.o.guifont = "FuraMono Nerd Font Mono:h15"
+    vim.g.neovide_scale_factor = 0.6
+    vim.g.neovide_transparency = 0.9
+    vim.g.neovide_scroll_animation_length = 0.2
+    vim.g.neovide_floating_blur_amount_x = 2
+    vim.g.neovide_floating_blur_amount_y = 2
+    vim.g.neovide_cursor_vfx_mode = "railgun"
+    vim.g.neovide_cursor_trail_length = 0.05
+    vim.g.neovide_cursor_animation_length = 0.05
+else
+    require("plugin-config.transparent")
+end
+
+
 require('basic')
 require('keybindings')
 require('plugins')
@@ -26,7 +42,6 @@ require("cmake-tools").setup {
         long = { show = true, max_length = 40 }
     }
 }
-require("plugin-config.transparent")
 require('vimscript')
 require('leap').add_default_mappings()
 require("plugin-config.dashboard")

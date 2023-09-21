@@ -81,6 +81,8 @@ lspconfig.clangd.setup{
 
         "--clang-tidy",
 
+        "--header-insertion=never",
+
     },
     on_attach = on_attach,
     capabilities = capabilities,

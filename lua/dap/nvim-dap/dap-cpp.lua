@@ -2,7 +2,7 @@ local dap = require('dap')
 dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
-    command = '/home/chenyulin/.config/nvim/data/debug/tools/extension/debugAdapters/bin/OpenDebugAD7',
+    command = 'OpenDebugAD7',
 }
 
 dap.configurations.cpp = {
