@@ -54,7 +54,7 @@ nnoremap xx <Plug>(leap-forward-till)
 noremap <F1><F1> :Dashboard<CR>
 
 
-
+nnoremap <leader>p :lua require("nabla").popup()<CR> " Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
 
 
 
