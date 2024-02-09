@@ -4,7 +4,7 @@ set wrap
 set guicursor=i:block-iCursor-blinkon0,v:block-vCursor
 
 set winblend=0
-set pumblend=25
+set pumblend=0
 
 
 " How each level is indented and what to prepend.

@@ -27,7 +27,7 @@ formatter.setup({
 				return {
 					exe = "clang-format",
 					args = {
-						"-style='{IndentWidth: 4}'",
+						--"-style='{IndentWidth: 4}'",
 						--.. os.getenv("XDG_CONFIG_HOME")
 						--.. "/.config/nvim/formatter_conf/.clangd-formata",
 					},
