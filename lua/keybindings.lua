@@ -204,10 +204,10 @@ pluginKeys.cmp = function(cmp)
 		-- 出现补全
 		["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		-- 取消
-		--["<Esc>"] = cmp.mapping({
-		--    i = cmp.mapping.abort(),
-		--    c = cmp.mapping.close()
-		--}),
+		["<Esc>"] = cmp.mapping({
+		    i = cmp.mapping.abort(),
+		    c = cmp.mapping.close()
+		}),
 		-- 上一个
 		["<C-Up>"] = cmp.mapping.select_prev_item({}),
 		-- 下一个
