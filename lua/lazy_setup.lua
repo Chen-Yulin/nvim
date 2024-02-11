@@ -108,8 +108,20 @@ require("lazy").setup(
 		"untitled-ai/jupyter_ascending.vim",
 		"epwalsh/obsidian.nvim",
 		-- some ai plugins
-		"github/copilot.vim",
-		"hrsh7th/cmp-copilot",
+        {
+            "zbirenbaum/copilot.lua",
+            cmd = "Copilot",
+            event = "InsertEnter",
+            config = function()
+                require("copilot").setup({})
+            end,
+        },
+        {
+            "zbirenbaum/copilot-cmp",
+            config = function ()
+                require("copilot_cmp").setup()
+            end
+        },
 		--use {'akinsho/git-conflict.nvim', tag = "*", config = function()
 		--    require('git-conflict').setup()
 		--end}

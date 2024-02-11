@@ -1,4 +1,9 @@
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
 local map = vim.api.nvim_set_keymap
 -- 复用 opt 参数
 local opt = { noremap = true, silent = true }
@@ -200,21 +205,23 @@ pluginKeys.cmp = function(cmp)
 		-- 出现补全
 		["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		-- 取消
-		["<Esc>"] = cmp.mapping({
-		    i = cmp.mapping.abort(),
-		    c = cmp.mapping.close()
-		}),
+		--["<Esc>"] = cmp.mapping({
+		--    i = cmp.mapping.abort(),
+		--    c = cmp.mapping.close()
+		--}),
 		-- 上一个
 		["<C-Up>"] = cmp.mapping.select_prev_item({}),
 		-- 下一个
 		["<C-Down>"] = cmp.mapping.select_next_item({}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		["<Tab>"] = vim.schedule_wrap(
+            function(fallback)
+                if cmp.visible() and has_words_before() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    fallback()
+                end
+            end,
+            { "i", "s" }),
 		-- 确认
 		["<CR>"] = cmp.mapping.confirm({
 

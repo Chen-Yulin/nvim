@@ -9,7 +9,7 @@ cmp.setup({
         --    cmp.TriggerEvent.InsertEnter,
         --},
         completeopt = "menu,menuone,preview,noinsert,noselect",
-        keyword_length = 1,
+        keyword_length = 0,
     },
     -- 指定 snippet 引擎
     snippet = {
@@ -29,11 +29,12 @@ cmp.setup({
     },
     -- 补全源
     sources = cmp.config.sources({
+        -- Copilot Source
+        { name = "copilot", group_index = 2 },
         -- For vsnip users.
         { name = "vsnip" },
         { name = "nvim_lsp", trigger_characters={"."}},
         { name = 'orgmode' },
-        { name = 'copilot'}
         --{ name = 'nvim_lsp_signature_help' },
 
         -- For luasnip users.
