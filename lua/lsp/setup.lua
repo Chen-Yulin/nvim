@@ -85,30 +85,6 @@ lspconfig.clangd.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
-
-<<<<<<< HEAD
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-
-lspconfig.lua_ls.setup{
-    settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  },
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-lspconfig.pyright.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-=======
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -159,7 +135,6 @@ lspconfig.pyright.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
->>>>>>> 0f482b8fb1af1f33bd464ca637a91898b561e80b
 
 lspconfig.html.setup({
 	capabilities = capabilities,
