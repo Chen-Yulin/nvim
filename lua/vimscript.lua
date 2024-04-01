@@ -60,5 +60,8 @@ noremap <F1><F1> :Dashboard<CR>
 nnoremap <leader>p :lua require("nabla").popup()<CR> " Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
 
 
+" for python env
+"let g:python3_host_prog = '/home/cyl/.conda/envs/nvimpy/bin/python'
+"let g:python3_host_prog = '/home/cyl/.conda/envs/nvimpy/bin/python'
 
 ]])
