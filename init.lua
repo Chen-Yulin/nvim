@@ -44,3 +44,6 @@ require("plugin-config.lspkind")
 require("plugin-config.notify")
 require("plugin-config.noice")
 require("plugin-config.comment")
+vim.cmd([[
+set wrap
+]])
