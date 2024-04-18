@@ -160,4 +160,5 @@ require("lazy").setup({
 		"numToStr/Comment.nvim",
 		lazy = false,
 	},
+    { "nvim-neotest/nvim-nio" },
 })
