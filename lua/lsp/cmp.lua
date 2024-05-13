@@ -46,7 +46,7 @@ cmp.setup({
 
 		-- -- For snippy users.
 		--{ name = 'snippy' },
-	}, ),
+	}),
 
 	-- 快捷键设置
 	mapping = require("keybindings").cmp(cmp),
