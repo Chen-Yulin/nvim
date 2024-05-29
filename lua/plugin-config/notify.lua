@@ -3,7 +3,6 @@ if not status then
 	vim.notify("没有找到 notify")
 	return
 end
-local notify = vim.notify
 
 require("notify").setup({
 	background_colour = "#000000",

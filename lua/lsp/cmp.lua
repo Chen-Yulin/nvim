@@ -9,7 +9,7 @@ cmp.setup({
 		--    cmp.TriggerEvent.InsertEnter,
 		--},
 		completeopt = "menu,menuone,preview,noinsert,noselect",
-		keyword_length = 0,
+		keyword_length = 1, -- 从第一个字符开始补全
 	},
 	-- 指定 snippet 引擎
 	snippet = {

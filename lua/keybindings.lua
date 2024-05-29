@@ -169,7 +169,8 @@ pluginKeys.mapLSP = function(mapbuf)
 	mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
 	-- go xxx
 	-- mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
-	mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+	mapbuf("n", "gf", "<cmd>Lspsaga peek_definition<CR>", opt)
+	mapbuf("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opt)
 	--[[
   Lspsaga 替换 gh
   mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
@@ -179,7 +180,7 @@ pluginKeys.mapLSP = function(mapbuf)
   Lspsaga 替换 gr
   mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
   --]]
-	mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
+	mapbuf("n", "gr", "<cmd>Lspsaga finder<CR>", opt)
 	--[[
   Lspsaga 替换 gp, gj, gk
   mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)

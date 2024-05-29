@@ -68,7 +68,16 @@ require("lazy").setup({
 	"onsails/lspkind-nvim",
 	-- indent-blankline
 	"lukas-reineke/indent-blankline.nvim",
-	"tami5/lspsaga.nvim",
+	{
+		"nvimdev/lspsaga.nvim",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
+	},
 
 	-- dap
 	"mfussenegger/nvim-dap",
@@ -141,24 +150,24 @@ require("lazy").setup({
 			-- refer to the configuration section below
 		},
 	},
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			-- add any options here
-		},
-		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
-		},
-	},
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts = {
+	-- 		-- add any options here
+	-- 	},
+	-- 	dependencies = {
+	-- 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		-- OPTIONAL:
+	-- 		--   `nvim-notify` is only needed, if you want to use the notification view.
+	-- 		--   If not available, we use `mini` as the fallback
+	-- 		"rcarriga/nvim-notify",
+	-- 	},
+	-- },
 	{
 		"numToStr/Comment.nvim",
 		lazy = false,
 	},
-    { "nvim-neotest/nvim-nio" },
+	{ "nvim-neotest/nvim-nio" },
 })
