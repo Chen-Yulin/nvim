@@ -170,4 +170,10 @@ require("lazy").setup({
 		lazy = false,
 	},
 	{ "nvim-neotest/nvim-nio" },
+	{
+		"wintermute-cell/gitignore.nvim",
+		config = function()
+			require("gitignore")
+		end,
+	},
 })
