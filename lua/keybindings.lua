@@ -294,4 +294,6 @@ pluginKeys.mapDAP = function()
 	map("n", "<leader>dh", ":lua require'dapui'.eval()<CR>", opt)
 end
 
+map("n", "<F3>", ":Navbuddy<CR>", opt)
+
 return pluginKeys

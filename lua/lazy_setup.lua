@@ -92,7 +92,6 @@ require("lazy").setup({
 		opts = {}, -- this is equalent to setup({}) function
 	},
 	"Civitasv/cmake-tools.nvim",
-	"liuchengxu/vista.vim",
 	"Chen-Yulin/transparent.nvim",
 	"ggandor/leap.nvim",
 	"Chen-Yulin/dashboard-nvim",
@@ -175,5 +174,18 @@ require("lazy").setup({
 		config = function()
 			require("gitignore")
 		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			{
+				"SmiteshP/nvim-navbuddy",
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"MunifTanjim/nui.nvim",
+				},
+				opts = { lsp = { auto_attach = true } },
+			},
+		},
 	},
 })

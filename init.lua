@@ -1,15 +1,15 @@
 require("lazy_setup")
 -- for neovide
 if vim.g.neovide then
-	vim.o.guifont = "FuraMono Nerd Font Mono:h14"
-	vim.g.neovide_scale_factor = 0.6
+	vim.o.guifont = "Jetbrains Mono:h16"
+	vim.g.neovide_scale_factor = 1
 	vim.g.neovide_transparency = 0.9
-	vim.g.neovide_scroll_animation_length = 0.2
+	vim.g.neovide_scroll_animation_length = 0.1
 	vim.g.neovide_floating_blur_amount_x = 2
 	vim.g.neovide_floating_blur_amount_y = 2
 	vim.g.neovide_cursor_vfx_mode = "railgun"
-	vim.g.neovide_cursor_trail_length = 0.05
-	vim.g.neovide_cursor_animation_length = 0.05
+	vim.g.neovide_cursor_trail_length = 0.02
+	vim.g.neovide_cursor_animation_length = 0.02
 else
 	require("plugin-config.transparent")
 end
