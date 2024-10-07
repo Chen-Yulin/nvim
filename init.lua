@@ -44,6 +44,8 @@ require("plugin-config.lspkind")
 --require("plugin-config.notify")
 --require("plugin-config.noice")
 require("plugin-config.comment")
+require("plugin-config.avante").setup()
+require("avante_lib").load()
 require("my_cmd")
 vim.cmd([[
 set wrap
