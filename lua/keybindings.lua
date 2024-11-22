@@ -29,15 +29,11 @@ map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 
 -- 左右比例控制
-map("n", "<C-Left>", ":vertical resize -2<CR>", opt)
-map("n", "<C-Right>", ":vertical resize +2<CR>", opt)
-map("n", "s,", ":vertical resize -20<CR>", opt)
-map("n", "s.", ":vertical resize +20<CR>", opt)
+map("n", "<C-Left>", ":vertical resize -5<CR>", opt)
+map("n", "<C-Right>", ":vertical resize +5<CR>", opt)
 -- 上下比例
-map("n", "sj", ":resize +10<CR>", opt)
-map("n", "sk", ":resize -10<CR>", opt)
-map("n", "<C-Down>", ":resize +2<CR>", opt)
-map("n", "<C-Up>", ":resize -2<CR>", opt)
+map("n", "<C-Up>", ":resize +5<CR>", opt)
+map("n", "<C-Down>", ":resize -5<CR>", opt)
 -- 等比例
 map("n", "s=", "<C-w>=", opt)
 
@@ -47,10 +43,10 @@ map("t", "<Esc>", "<C-\\><C-n>:FloatermToggle<CR>", opt)
 
 map("n", "<leader>vt", ":vsp | terminal<CR>", opt)
 --map("t", "<Esc>", "<C-\\><C-n>", opt)
-map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
-map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
-map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
-map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
+-- map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
+-- map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
+-- map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
+-- map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 
 -- visual模式下缩进代码
 map("v", "<", "<gv", opt)
@@ -79,10 +75,9 @@ map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
 map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 -- 关闭
---"moll/vim-bbye"
-map("n", "<C-w>", ":Bdelete!<CR>", opt)
-map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
-map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
+-- map("n", "<C-w>", ":Bdelete!<CR>", opt)
+-- map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
+-- map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
 map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 vim.api.nvim_set_keymap("n", "<leader>u", ":UndotreeToggle<CR>", { noremap = true })
 
@@ -134,6 +129,9 @@ pluginKeys.nvimTreeList = {
 	{ key = "p", action = "paste" },
 	{ key = "s", action = "system_open" },
 }
+
+-- Telescope
+vim.keymap.set("n", "<C-g>", ":Telescope help_tags<CR>")
 
 pluginKeys.telescopeList = {
 	i = {

@@ -113,7 +113,7 @@ require("lazy").setup({
 	"mbbill/undotree",
 
 	"untitled-ai/jupyter_ascending.vim",
-	"epwalsh/obsidian.nvim",
+	--"epwalsh/obsidian.nvim",
 	-- some ai plugins
 	{
 		"zbirenbaum/copilot.lua",
@@ -129,9 +129,6 @@ require("lazy").setup({
 			require("copilot_cmp").setup()
 		end,
 	},
-	--use {'akinsho/git-conflict.nvim', tag = "*", config = function()
-	--    require('git-conflict').setup()
-	--end}
 	--git diff
 	"tpope/vim-fugitive",
 	-- code folding
@@ -206,7 +203,8 @@ require("lazy").setup({
 		},
 	},
 	{
-		"Chen-Yulin/avante.nvim",
+		"yetone/avante.nvim",
+		branch = "main",
 		event = "VeryLazy",
 		lazy = false,
 		version = false, -- set this if you want to always pull the latest change
@@ -251,4 +249,32 @@ require("lazy").setup({
 			},
 		},
 	},
+	"sindrets/diffview.nvim",
+	-- { "akinsho/git-conflict.nvim" },
+	{
+		"youguanxinqing/git-conflicts.nvim",
+		event = "VeryLazy",
+		lazy = true,
+		cmd = {
+			"GitConflictsHighlight",
+			"GitConflictsHighlightUN",
+		},
+		config = function()
+			vim.api.nvim_create_user_command(
+				"GitConflictsHighlight",
+				'lua require("git-conflicts").highlight_conflicts()',
+				{ bang = true }
+			)
+			vim.api.nvim_create_user_command(
+				"GitConflictsHighlightUN",
+				'lua require("git-conflicts").clear_highlights()',
+				{ bang = true }
+			)
+		end,
+	},
+	{ "habamax/vim-godot", event = "VimEnter" },
+
+	-- for my customized plugins
+	-- { dir = "/home/cyl/nvim_plugins/ColorfulDiff.nvim/" },
+	"Chen-Yulin/ColorfulDiff.nvim",
 })

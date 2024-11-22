@@ -28,6 +28,7 @@ require("lsp.cmp")
 require("plugin-config.indent-blankline")
 require("dap.nvim-dap.init")
 require("dap.nvim-dap.dap-cpp")
+require("dap.nvim-dap.dap-godot")
 require("leap").add_default_mappings()
 require("plugin-config.dashboard")
 require("plugin-config.project")
@@ -35,7 +36,7 @@ require("plugin-config.autopairs")
 
 vim.o.undofile = true
 require("fundo").setup()
-require("plugin-config.obsidian")
+--require("plugin-config.obsidian")
 -- require('plugin-config.git-conflict')
 require("plugin-config.nvim-ufo")
 require("plugin-config.formatter")
@@ -44,9 +45,21 @@ require("plugin-config.lspkind")
 --require("plugin-config.notify")
 --require("plugin-config.noice")
 require("plugin-config.comment")
-require("plugin-config.avante").setup()
-require("avante_lib").load()
+require("plugin-config.diffview")
+require("plugin-config.avante")
+-- require("plugin-config.gitconflict")
+--require("avante_lib").load()
+require("plugin-config.colorful-diff")
 require("my_cmd")
 vim.cmd([[
 set wrap
 ]])
+require("globals")
+
+-- for godot
+local gdproject = io.open(vim.fn.getcwd() .. "/project.godot", "r")
+if gdproject then
+	io.close(gdproject)
+	vim.fn.serverstart("./godothost")
+	vim.notify("Open godot project")
+end

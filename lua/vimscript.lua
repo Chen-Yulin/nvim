@@ -22,6 +22,8 @@ noremap <F1><F1> :Dashboard<CR>
 
 nnoremap <leader>p :lua require("nabla").popup()<CR> " Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
 
+" 插件测试
+nmap <leader>pt <Plug>PlenaryTestFile
 
 " for python env
 "let g:python3_host_prog = '/home/cyl/.conda/envs/nvimpy/bin/python'
