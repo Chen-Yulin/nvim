@@ -155,8 +155,10 @@ lspconfig.marksman.setup({
 --    on_attach = on_attach,
 --}
 
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp"
 lspconfig.omnisharp.setup({
-	cmd = { "dotnet", "/home/cyl/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+	cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
 
 	-- Enables support for reading code style, naming convention and analyzer
 	-- settings from .editorconfig.
