@@ -6,7 +6,7 @@ end
 
 avante.setup({
 	---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-	provider = "openai", -- Recommend using Claude
+	provider = "claude", -- Recommend using Claude
 	auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
 	claude = {
 		endpoint = "https://api.anthropic.com",
