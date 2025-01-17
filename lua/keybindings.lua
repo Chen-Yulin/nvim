@@ -294,4 +294,15 @@ end
 
 map("n", "<F3>", ":Navbuddy<CR>", opt)
 
+--neocodeium
+local neocodeium = require("neocodeium")
+-- set up some sort of keymap to cycle and complete to trigger completion
+vim.keymap.set("i", "<A-e>", function()
+	neocodeium.cycle_or_complete()
+end)
+-- make sure to have a mapping to accept a completion
+vim.keymap.set("i", "<A-f>", function()
+	neocodeium.accept()
+end)
+map("i", "<A-n>", "<ESC>:NeoCodeium toggle_buffer<CR>a", opt)
 return pluginKeys

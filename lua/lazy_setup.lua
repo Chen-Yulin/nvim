@@ -116,17 +116,12 @@ require("lazy").setup({
 	--"epwalsh/obsidian.nvim",
 	-- some ai plugins
 	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
+		"monkoose/neocodeium",
+		event = "VeryLazy",
 		config = function()
-			require("copilot").setup({})
-		end,
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		config = function()
-			require("copilot_cmp").setup()
+			local neocodeium = require("neocodeium")
+			neocodeium.setup()
+			vim.keymap.set("i", "<A-f>", neocodeium.accept)
 		end,
 	},
 	--git diff
