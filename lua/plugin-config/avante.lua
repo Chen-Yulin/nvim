@@ -21,6 +21,7 @@ avante.setup({
 		auto_apply_diff_after_generation = false,
 		support_paste_from_clipboard = true,
 		minimize_diff = true,
+		enable_claude_text_editor_tool_mode = true,
 	},
 	mappings = {
 		--- @class AvanteConflictMappings
