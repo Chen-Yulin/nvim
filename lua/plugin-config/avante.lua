@@ -7,7 +7,7 @@ end
 avante.setup({
 	---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
 	provider = "claude", -- Recommend using Claude
-	auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+	-- auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
 	claude = {
 		endpoint = "https://api.anthropic.com",
 		model = "claude-3-5-sonnet-20240620",
@@ -22,6 +22,16 @@ avante.setup({
 		support_paste_from_clipboard = true,
 		minimize_diff = true,
 		enable_claude_text_editor_tool_mode = true,
+		enable_cursor_planning_mode = true,
+	},
+	vendors = {
+		groq = { -- define groq provider
+			__inherited_from = "openai",
+			api_key_name = "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",
+			endpoint = "https://api.groq.com/openai/v1/",
+			model = "llama-3.3-70b-versatile",
+			max_completion_tokens = 65536, -- remember to increase this value, otherwise it will stop generating halfway
+		},
 	},
 	mappings = {
 		--- @class AvanteConflictMappings
