@@ -64,18 +64,17 @@ end
 ]]
 --
 
-local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp-mono"
-if not lspconfig.omnisharp_mono then
-	lspconfig.omnisharp_mono = {
-		default_config = {
-			cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-			filetypes = { "cs" },
-			root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln", ".git"),
-			settings = {},
-		},
-	}
-end
+-- if not lspconfig.omnisharp_mono then
+-- 	lspconfig.omnisharp_mono = {
+-- 		default_config = {
+-- 			cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+-- 			filetypes = { "cs" },
+-- 			root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln", ".git"),
+-- 			settings = {},
+-- 		},
+-- 	}
+-- end
 local capabilities = require("lsp.lspconfig").capabilities
 local on_attach = require("lsp.lspconfig").on_attach
 
@@ -167,14 +166,14 @@ lspconfig.marksman.setup({
 --    on_attach = on_attach,
 --}
 
-lspconfig.omnisharp_mono.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {
-		useModernNet = false,
-		monoPath = vim.fn.system({ "which", "mono" }),
-	},
-})
+-- lspconfig.omnisharp_mono.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		useModernNet = false,
+-- 		monoPath = vim.fn.system({ "which", "mono" }),
+-- 	},
+-- })
 
 lspconfig.gdscript.setup({
 	capabilities = capabilities,
