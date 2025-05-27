@@ -2,48 +2,46 @@
 -- { key: 语言 value: 配置文件 }
 -- key 必须为下列网址列出的名称
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
-local util = require 'lspconfig.util'
+local util = require("lspconfig.util")
 local masonStatus, mason = pcall(require, "mason")
 if not masonStatus then
-    vim.notify("Can't find mason")
-    return
+	vim.notify("Can't find mason")
+	return
 end
 
 local masonconfigStatus, mason_config = pcall(require, "mason-lspconfig")
 if not masonconfigStatus then
-    vim.notify("Can't find mason-lspconfig")
-    return
+	vim.notify("Can't find mason-lspconfig")
+	return
 end
 
 local lspconfigStatus, lspconfig = pcall(require, "lspconfig")
 if not lspconfigStatus then
-    vim.notify("没有找到 lspconfig")
-    return
+	vim.notify("没有找到 lspconfig")
+	return
 end
 
-
 mason.setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-        },
-    },
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
 })
 
 mason_config.setup({
-    ensure_installed = {
-        "lua_ls",
-        "pyright",
-        "clangd",
-        "cmake",
-        "svlangserver",
-        "html",
-        "marksman",
-        "omnisharp",
-        "ltex"
-    },
+	ensure_installed = {
+		"lua_ls",
+		"pyright",
+		"clangd",
+		"svlangserver",
+		"html",
+		"marksman",
+		"omnisharp",
+		"ltex",
+	},
 })
 
 --[[
@@ -63,135 +61,121 @@ for name, config in pairs(servers) do
         vim.notify("init with default config")
     end
 end
-]]--
+]]
+--
 
+local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp-mono"
+-- if not lspconfig.omnisharp_mono then
+-- 	lspconfig.omnisharp_mono = {
+-- 		default_config = {
+-- 			cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+-- 			filetypes = { "cs" },
+-- 			root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln", ".git"),
+-- 			settings = {},
+-- 		},
+-- 	}
+-- end
 local capabilities = require("lsp.lspconfig").capabilities
 local on_attach = require("lsp.lspconfig").on_attach
 
 -- local util = require 'lspconfig.util'
 -- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
-lspconfig.clangd.setup{
-    cmd = {
+lspconfig.clangd.setup({
+	cmd = {
 
-        "clangd",
+		"clangd",
 
-        "--background-index",
+		"--background-index",
 
-        "--suggest-missing-includes",
+		"--suggest-missing-includes",
 
-        "--clang-tidy",
+		"--clang-tidy",
 
-        "--header-insertion=never",
+		"--header-insertion=never",
+	},
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 
-    },
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+lspconfig.lua_ls.setup({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
+lspconfig.svlangserver.setup({
+	-- https://github.com/imc-trading/svlangserver
+	on_init = function(client)
+		local path = client.workspace_folders[1].name
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+		if path == "/path/to/project1" then
+			client.config.settings.systemverilog = {
+				includeIndexing = { "**/*.{sv,svh}" },
+				excludeIndexing = { "test/**/*.sv*" },
+				defines = {},
+				launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+				formatCommand = "/tools/verible-verilog-format",
+			}
+		elseif path == "/path/to/project2" then
+			client.config.settings.systemverilog = {
+				includeIndexing = { "**/*.{sv,svh}" },
+				excludeIndexing = { "sim/**/*.sv*" },
+				defines = {},
+				launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+				formatCommand = "/tools/verible-verilog-format",
+			}
+		end
 
-lspconfig.lua_ls.setup{
-    settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  },
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+		client.notify("workspace/didChangeConfiguration")
+		return true
+	end,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
-lspconfig.svlangserver.setup{
-    -- https://github.com/imc-trading/svlangserver
-    on_init = function(client)
-        local path = client.workspace_folders[1].name
+lspconfig.eslint.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
-        if path == '/path/to/project1' then
-        client.config.settings.systemverilog = {
-            includeIndexing     = {"**/*.{sv,svh}"},
-            excludeIndexing     = {"test/**/*.sv*"},
-            defines             = {},
-            launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
-            formatCommand       = "/tools/verible-verilog-format"
-        }
-        elseif path == '/path/to/project2' then
-        client.config.settings.systemverilog = {
-            includeIndexing     = {"**/*.{sv,svh}"},
-            excludeIndexing     = {"sim/**/*.sv*"},
-            defines             = {},
-            launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
-            formatCommand       = "/tools/verible-verilog-format"
-        }
-        end
+lspconfig.pyright.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
-        client.notify("workspace/didChangeConfiguration")
-        return true
-    end,
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
+lspconfig.html.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
-lspconfig.pyright.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-
-lspconfig.html.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-
-lspconfig.marksman.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
+lspconfig.marksman.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 --lspconfig.ltex.setup{
 --    capabilities = capabilities,
 --    on_attach = on_attach,
 --}
 
-lspconfig.omnisharp.setup {
-    cmd = { "dotnet", "/home/cyl/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+-- lspconfig.omnisharp_mono.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		useModernNet = false,
+-- 		monoPath = vim.fn.system({ "which", "mono" }),
+-- 	},
+-- })
 
-    -- Enables support for reading code style, naming convention and analyzer
-    -- settings from .editorconfig.
-    enable_editorconfig_support = true,
-
-    -- If true, MSBuild project system will only load projects for files that
-    -- were opened in the editor. This setting is useful for big C# codebases
-    -- and allows for faster initialization of code navigation features only
-    -- for projects that are relevant to code that is being edited. With this
-    -- setting enabled OmniSharp may load fewer projects and may thus display
-    -- incomplete reference lists for symbols.
-    enable_ms_build_load_projects_on_demand = false,
-
-    -- Enables support for roslyn analyzers, code fixes and rulesets.
-    enable_roslyn_analyzers = true,
-
-    -- Specifies whether 'using' directives should be grouped and sorted during
-    -- document formatting.
-    organize_imports_on_format = false,
-
-    -- Enables support for showing unimported types and unimported extension
-    -- methods in completion lists. When committed, the appropriate using
-    -- directive will be added at the top of the current file. This option can
-    -- have a negative impact on initial completion responsiveness,
-    -- particularly for the first few completion sessions after opening a
-    -- solution.
-    enable_import_completion = false,
-
-    -- Specifies whether to include preview versions of the .NET SDK when
-    -- determining which version to use for project loading.
-    sdk_include_prereleases = true,
-
-    -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
-    -- true
-    analyze_open_documents_only = false,
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-
+lspconfig.gdscript.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})

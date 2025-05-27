@@ -57,6 +57,9 @@ db.custom_center = {
 	--   action = "Telescopecope live_grep",
 	-- },
 }
+local Empty = {
+	[[]],
+}
 local MJ0 = {
 	[[⠀⠀⠀⠀⠀⠀⠀⡄⠀⣶⠀⢠       ]],
 	[[⠀⠀⠀⠀⠀⢻⡀⣿⠀⣿⠀⣿⢀⡏     ]],
@@ -104,7 +107,7 @@ db.custom_header = MJ0
 db.setup({
 	theme = "hyper",
 	config = {
-		header = MJ0,
+		header = Empty,
 		week_header = {
 			enable = false,
 		},

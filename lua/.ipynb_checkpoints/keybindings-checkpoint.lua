@@ -29,11 +29,15 @@ map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 
 -- 左右比例控制
-map("n", "<C-Left>", ":vertical resize -5<CR>", opt)
-map("n", "<C-Right>", ":vertical resize +5<CR>", opt)
+map("n", "<C-Left>", ":vertical resize -2<CR>", opt)
+map("n", "<C-Right>", ":vertical resize +2<CR>", opt)
+map("n", "s,", ":vertical resize -20<CR>", opt)
+map("n", "s.", ":vertical resize +20<CR>", opt)
 -- 上下比例
-map("n", "<C-Up>", ":resize +5<CR>", opt)
-map("n", "<C-Down>", ":resize -5<CR>", opt)
+map("n", "sj", ":resize +10<CR>", opt)
+map("n", "sk", ":resize -10<CR>", opt)
+map("n", "<C-Down>", ":resize +2<CR>", opt)
+map("n", "<C-Up>", ":resize -2<CR>", opt)
 -- 等比例
 map("n", "s=", "<C-w>=", opt)
 
@@ -43,10 +47,10 @@ map("t", "<Esc>", "<C-\\><C-n>:FloatermToggle<CR>", opt)
 
 map("n", "<leader>vt", ":vsp | terminal<CR>", opt)
 --map("t", "<Esc>", "<C-\\><C-n>", opt)
--- map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
--- map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
--- map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
--- map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
+map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
+map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
+map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
+map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 
 -- visual模式下缩进代码
 map("v", "<", "<gv", opt)
@@ -75,9 +79,10 @@ map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
 map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 -- 关闭
--- map("n", "<C-w>", ":Bdelete!<CR>", opt)
--- map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
--- map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
+--"moll/vim-bbye"
+map("n", "<C-w>", ":Bdelete!<CR>", opt)
+map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
+map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
 map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 vim.api.nvim_set_keymap("n", "<leader>u", ":UndotreeToggle<CR>", { noremap = true })
 
@@ -89,7 +94,7 @@ vim.keymap.set("n", "zm", ":foldclose<CR>")
 
 -- trouble
 vim.keymap.set("n", "<leader>xx", function()
-	require("trouble").toggle("diagnostics")
+	require("trouble").toggle()
 end)
 vim.keymap.set("n", "<leader>xw", function()
 	require("trouble").toggle("workspace_diagnostics")
@@ -98,7 +103,7 @@ vim.keymap.set("n", "<leader>xd", function()
 	require("trouble").toggle("document_diagnostics")
 end)
 vim.keymap.set("n", "<leader>xq", function()
-	require("trouble").toggle("qflist")
+	require("trouble").toggle("quickfix")
 end)
 vim.keymap.set("n", "<leader>xl", function()
 	require("trouble").toggle("loclist")
@@ -108,30 +113,27 @@ local pluginKeys = {}
 
 -- nvim-tree
 -- alt + m 键打开关闭tree
-map("n", "<F2>", ":Neotree toggle<CR>", opt)
+map("n", "<F2>", ":NvimTreeToggle<CR>", opt)
 -- 列表快捷键
--- pluginKeys.nvimTreeList = {
--- 	-- 打开文件或文件夹
--- 	{ key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
--- 	-- 分屏打开文件
--- 	{ key = "v", action = "vsplit" },
--- 	{ key = "h", action = "split" },
--- 	-- 显示隐藏文件
--- 	{ key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
--- 	{ key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
--- 	-- 文件操作
--- 	{ key = "R", action = "refresh" },
--- 	{ key = "a", action = "create" },
--- 	{ key = "d", action = "remove" },
--- 	{ key = "r", action = "rename" },
--- 	{ key = "x", action = "cut" },
--- 	{ key = "c", action = "copy" },
--- 	{ key = "p", action = "paste" },
--- 	{ key = "s", action = "system_open" },
--- }
-
--- Telescope
-vim.keymap.set("n", "<C-g>", ":Telescope help_tags<CR>")
+pluginKeys.nvimTreeList = {
+	-- 打开文件或文件夹
+	{ key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+	-- 分屏打开文件
+	{ key = "v", action = "vsplit" },
+	{ key = "h", action = "split" },
+	-- 显示隐藏文件
+	{ key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
+	{ key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
+	-- 文件操作
+	{ key = "R", action = "refresh" },
+	{ key = "a", action = "create" },
+	{ key = "d", action = "remove" },
+	{ key = "r", action = "rename" },
+	{ key = "x", action = "cut" },
+	{ key = "c", action = "copy" },
+	{ key = "p", action = "paste" },
+	{ key = "s", action = "system_open" },
+}
 
 pluginKeys.telescopeList = {
 	i = {
@@ -167,8 +169,7 @@ pluginKeys.mapLSP = function(mapbuf)
 	mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
 	-- go xxx
 	-- mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
-	mapbuf("n", "gf", "<cmd>Lspsaga peek_definition<CR>", opt)
-	mapbuf("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opt)
+	mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 	--[[
   Lspsaga 替换 gh
   mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
@@ -178,7 +179,7 @@ pluginKeys.mapLSP = function(mapbuf)
   Lspsaga 替换 gr
   mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
   --]]
-	mapbuf("n", "gr", "<cmd>Lspsaga finder<CR>", opt)
+	mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
 	--[[
   Lspsaga 替换 gp, gj, gk
   mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
@@ -292,17 +293,4 @@ pluginKeys.mapDAP = function()
 	map("n", "<leader>dh", ":lua require'dapui'.eval()<CR>", opt)
 end
 
-map("n", "<F3>", ":Navbuddy<CR>", opt)
-
---neocodeium
-local neocodeium = require("neocodeium")
--- set up some sort of keymap to cycle and complete to trigger completion
-vim.keymap.set("i", "<A-e>", function()
-	neocodeium.cycle_or_complete()
-end)
--- make sure to have a mapping to accept a completion
-vim.keymap.set("i", "<A-f>", function()
-	neocodeium.accept()
-end)
-map("i", "<A-n>", "<ESC>:NeoCodeium toggle_buffer<CR>a", opt)
 return pluginKeys
