@@ -39,8 +39,22 @@ mason_config.setup({
 		"svlangserver",
 		"html",
 		"marksman",
-		"omnisharp",
+		-- "omnisharp",
 		"ltex",
+	},
+	automatic_enable = {
+		exclude = {
+			-- "omnisharp",
+			"clangd",
+			"lua_ls",
+			"svlangserver",
+			"eslint",
+			"pyright",
+			"html",
+			"marksman",
+			"ltex",
+			"gdscript",
+		},
 	},
 })
 

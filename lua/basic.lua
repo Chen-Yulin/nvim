@@ -48,6 +48,8 @@ vim.o.whichwrap = "<,>,[,]"
 vim.o.hidden = true
 -- 鼠标支持
 vim.o.mouse = "a"
+-- 启用鼠标移动事件，用于hover功能
+vim.o.mousemoveevent = true
 -- 禁止创建备份文件
 vim.o.backup = false
 vim.o.writebackup = false
