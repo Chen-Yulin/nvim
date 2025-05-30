@@ -24,6 +24,18 @@ avante.setup({
 		enable_claude_text_editor_tool_mode = true,
 		enable_cursor_planning_mode = true,
 	},
+	-- disabled_tools = {
+	-- 	"list_files", -- Built-in file operations
+	-- 	"search_files",
+	-- 	"read_file",
+	-- 	"create_file",
+	-- 	"rename_file",
+	-- 	"delete_file",
+	-- 	"create_dir",
+	-- 	"rename_dir",
+	-- 	"delete_dir",
+	-- 	"bash", -- Built-in terminal access
+	-- },
 	vendors = {
 		groq = { -- define groq provider
 			__inherited_from = "openai",
@@ -101,4 +113,17 @@ avante.setup({
 		---@type string | fun(): any
 		list_opener = "copen",
 	},
+	-- for mcp-hub
+	-- system_prompt as function ensures LLM always has latest MCP server state
+	-- This is evaluated for every message, even in existing chats
+	-- system_prompt = function()
+	-- 	local hub = require("mcphub").get_hub_instance()
+	-- 	return hub and hub:get_active_servers_prompt() or ""
+	-- end,
+	-- Using function prevents requiring mcphub before it's loaded
+	-- custom_tools = function()
+	-- 	return {
+	-- 		require("mcphub.extensions.avante").mcp_tool(),
+	-- 	}
+	-- end,
 })

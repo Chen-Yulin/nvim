@@ -50,6 +50,7 @@ require("plugin-config.avante")
 --require("avante_lib").load()
 require("plugin-config.colorful-diff")
 require("plugin-config.neocodeium_cfg")
+-- require("plugin-config.mcp-hub")
 require("my_cmd")
 vim.cmd([[
 set wrap

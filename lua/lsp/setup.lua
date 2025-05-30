@@ -78,8 +78,7 @@ end
 ]]
 --
 
-local pid = vim.fn.getpid()
--- local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp-mono"
+local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp-mono"
 -- if not lspconfig.omnisharp_mono then
 -- 	lspconfig.omnisharp_mono = {
 -- 		default_config = {
