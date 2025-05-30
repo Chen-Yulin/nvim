@@ -45,7 +45,12 @@ M.keyAttach = function(bufnr)
 	end
 
 	-- 绑定快捷键
-	require("keybindings").mapLSP(buf_set_keymap)
+	local status, keybindings = pcall(require, "keybindings")
+	if status and keybindings.mapLSP then
+		keybindings.mapLSP(buf_set_keymap)
+	else
+		vim.notify("Failed to load keybindings for LSP", vim.log.levels.WARN)
+	end
 end
 
 -- 禁用格式化功能，交给专门插件插件处理

@@ -12,7 +12,7 @@ avante.setup({
 		endpoint = "https://api.anthropic.com",
 		model = "claude-3-5-sonnet-20240620",
 		temperature = 0,
-		max_tokens = 4096,
+		max_tokens = 8192,
 	},
 	behaviour = {
 		auto_suggestions = false, -- Experimental stage
