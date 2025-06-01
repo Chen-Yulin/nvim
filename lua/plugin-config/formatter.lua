@@ -50,6 +50,15 @@ formatter.setup({
 				}
 			end,
 		},
+		python = {
+			function()
+				return {
+					exe = "ruff",
+					args = { "format", "-q", "-" },
+					stdin = true,
+				}
+			end,
+		},
 		["*"] = {
 			-- "formatter.filetypes.any" defines default configurations for any
 			-- filetype
