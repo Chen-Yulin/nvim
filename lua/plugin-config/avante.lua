@@ -6,13 +6,25 @@ end
 
 avante.setup({
 	---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-	provider = "claude", -- Recommend using Claude
+	provider = "gemini", -- Recommend using Claude
 	-- auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-	claude = {
-		endpoint = "https://api.anthropic.com",
-		model = "claude-3-5-sonnet-20240620",
-		temperature = 0,
-		max_tokens = 8192,
+	-- claude = {
+	-- 	endpoint = "https://api.anthropic.com",
+	-- 	model = "claude-3-5-sonnet-20240620",
+	-- 	temperature = 0,
+	-- 	max_tokens = 8192,
+	-- },
+	providers = {
+		gemini = {
+			endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+			model = "gemini-2.5-flash-preview-04-17",
+			timeout = 30000, -- Timeout in milliseconds
+			extra_request_body = {
+				generationConfig = {
+					temperature = 0.75,
+				},
+			},
+		},
 	},
 	behaviour = {
 		auto_suggestions = false, -- Experimental stage
@@ -36,15 +48,15 @@ avante.setup({
 	-- 	"delete_dir",
 	-- 	"bash", -- Built-in terminal access
 	-- },
-	vendors = {
-		groq = { -- define groq provider
-			__inherited_from = "openai",
-			api_key_name = "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",
-			endpoint = "https://api.groq.com/openai/v1/",
-			model = "llama-3.3-70b-versatile",
-			max_completion_tokens = 65536, -- remember to increase this value, otherwise it will stop generating halfway
-		},
-	},
+	-- vendors = {
+	-- 	groq = { -- define groq provider
+	-- 		__inherited_from = "openai",
+	-- 		api_key_name = "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",
+	-- 		endpoint = "https://api.groq.com/openai/v1/",
+	-- 		model = "llama-3.3-70b-versatile",
+	-- 		max_completion_tokens = 65536, -- remember to increase this value, otherwise it will stop generating halfway
+	-- 	},
+	-- },
 	mappings = {
 		--- @class AvanteConflictMappings
 		diff = {
