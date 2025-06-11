@@ -17,7 +17,7 @@ avante.setup({
 	providers = {
 		gemini = {
 			endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-			model = "gemini-2.5-flash-preview-04-17",
+			model = "gemini-2.5-flash-preview-05-20",
 			timeout = 30000, -- Timeout in milliseconds
 			extra_request_body = {
 				generationConfig = {

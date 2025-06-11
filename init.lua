@@ -31,7 +31,7 @@ require("dap.nvim-dap.dap-cpp")
 require("dap.nvim-dap.dap-godot")
 require("leap").add_default_mappings()
 require("plugin-config.dashboard")
-require("plugin-config.project")
+-- require("plugin-config.project")
 require("plugin-config.autopairs")
 
 vim.o.undofile = true
@@ -50,6 +50,7 @@ require("plugin-config.avante")
 --require("avante_lib").load()
 require("plugin-config.colorful-diff")
 require("plugin-config.neocodeium_cfg")
+require("plugin-config.neotree_cfg")
 -- require("plugin-config.mcp-hub")
 require("my_cmd")
 vim.cmd([[
