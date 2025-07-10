@@ -3,7 +3,6 @@ if not status then
 	vim.notify("没有找到 telescope")
 	return
 end
-require("telescope").load_extension("projects")
 
 if vim.g.neovide then
 	telescope.setup({

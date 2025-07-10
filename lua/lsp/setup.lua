@@ -41,6 +41,7 @@ mason_config.setup({
 		"marksman",
 		-- "omnisharp",
 		"ltex",
+		"ruff",
 	},
 	automatic_enable = {
 		exclude = {
@@ -161,9 +162,17 @@ lspconfig.eslint.setup({
 	on_attach = on_attach,
 })
 
+Pyright_cap = capabilities
+Pyright_cap.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+
 lspconfig.pyright.setup({
-	capabilities = capabilities,
+	capabilities = Pyright_cap,
 	on_attach = on_attach,
+	settings = {
+		pyright = {
+			disableOrganizeImports = true, -- Using Ruff
+		},
+	},
 })
 
 lspconfig.html.setup({

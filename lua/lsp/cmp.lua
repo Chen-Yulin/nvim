@@ -46,6 +46,7 @@ cmp.setup({
 
 		-- -- For snippy users.
 		--{ name = 'snippy' },
+		{ name = "codecompanion" },
 	}),
 
 	-- 快捷键设置

@@ -301,7 +301,7 @@ vim.keymap.set("i", "<A-e>", function()
 	neocodeium.cycle_or_complete()
 end)
 -- make sure to have a mapping to accept a completion
-vim.keymap.set("i", "<A-f>", function()
+vim.keymap.set("i", "<A-Right>", function()
 	neocodeium.accept()
 end)
 map("i", "<A-n>", "<ESC>:NeoCodeium toggle_buffer<CR>a", opt)
