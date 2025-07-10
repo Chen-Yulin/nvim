@@ -8,21 +8,47 @@ avante.setup({
 	---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
 	provider = "gemini", -- Recommend using Claude
 	-- auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-	-- claude = {
-	-- 	endpoint = "https://api.anthropic.com",
-	-- 	model = "claude-3-5-sonnet-20240620",
-	-- 	temperature = 0,
-	-- 	max_tokens = 8192,
-	-- },
 	providers = {
+		claude = {
+			endpoint = "https://api.anthropic.com",
+			model = "claude-3-5-sonnet-20241022",
+			extra_request_body = {
+				generationConfig = {
+					temperature = 0.2,
+					max_tokens = 8192,
+				},
+			},
+		},
+		claude_zz = {
+			endpoint = "https://claude.cloudapi.vip",
+			model = "claude-3-5-sonnet-20240620",
+			extra_request_body = {
+				generationConfig = {
+					temperature = 0.2,
+					max_tokens = 8192,
+				},
+			},
+		},
 		gemini = {
 			endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
 			model = "gemini-2.5-flash-preview-05-20",
 			timeout = 30000, -- Timeout in milliseconds
+			context_window = 1048576,
 			extra_request_body = {
 				generationConfig = {
-					temperature = 0.75,
+					temperature = 0.3,
 				},
+			},
+		},
+		copilot = {
+			model = "claude-3.5-sonnet",
+			proxy = nil, -- [protocol://]host[:port] Use this proxy
+			allow_insecure = true, -- Allow insecure server connections
+			timeout = 30000, -- Timeout in milliseconds
+			context_window = 128000, -- Number of tokens to send to the model for context
+			extra_request_body = {
+				temperature = 0.75,
+				max_tokens = 20480,
 			},
 		},
 	},

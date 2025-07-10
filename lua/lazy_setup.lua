@@ -19,6 +19,9 @@ require("lazy").setup({
 	-- tokyonight
 	"folke/tokyonight.nvim",
 	"sainnhe/sonokai",
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{ "projekt0n/github-nvim-theme", name = "github-theme", priority = 1000 },
+	{ "EdenEast/nightfox.nvim" },
 	-- OceanicNext
 	-- "mhartington/oceanic-next",
 	-- gruvbox
@@ -172,7 +175,7 @@ require("lazy").setup({
 		config = function()
 			local neocodeium = require("neocodeium")
 			neocodeium.setup()
-			vim.keymap.set("i", "<A-f>", neocodeium.accept)
+			-- vim.keymap.set("i", "<A-f>", neocodeium.accept)
 		end,
 	},
 	--git diff
@@ -261,11 +264,15 @@ require("lazy").setup({
 		build = "make",
 		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim", -- for input provider snacks
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
@@ -284,14 +291,6 @@ require("lazy").setup({
 						use_absolute_path = true,
 					},
 				},
-			},
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					file_types = { "markdown", "Avante" },
-				},
-				ft = { "markdown", "Avante" },
 			},
 		},
 	},

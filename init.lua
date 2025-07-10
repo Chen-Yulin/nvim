@@ -11,7 +11,7 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_trail_length = 0.02
 	vim.g.neovide_cursor_animation_length = 0.02
 else
-	require("plugin-config.transparent")
+	--require("plugin-config.transparent")
 end
 
 require("vimscript")
@@ -33,6 +33,7 @@ require("leap").add_default_mappings()
 require("plugin-config.dashboard")
 -- require("plugin-config.project")
 require("plugin-config.autopairs")
+require("plugin-config.copilot-cfg")
 
 vim.o.undofile = true
 require("fundo").setup()

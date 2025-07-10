@@ -9,9 +9,9 @@ neocodeium.setup({
 })
 
 -- create an autocommand which closes cmp when ai completions are displayed
-vim.api.nvim_create_autocmd("User", {
-	pattern = "NeoCodeiumCompletionDisplayed",
-	callback = function()
-		require("cmp").abort()
-	end,
-})
+-- vim.api.nvim_create_autocmd("User", {
+-- 	pattern = "NeoCodeiumCompletionDisplayed",
+-- 	callback = function()
+-- 		require("cmp").abort()
+-- 	end,
+-- })
