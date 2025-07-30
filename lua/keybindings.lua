@@ -305,4 +305,14 @@ vim.keymap.set("i", "<A-Right>", function()
 	neocodeium.accept()
 end)
 map("i", "<A-n>", "<ESC>:NeoCodeium toggle_buffer<CR>a", opt)
+
+-- codecompanion
+map("n", "<leader>at", ":CodeCompanionChat Toggle<CR>", opt)
+map("n", "<leader>aa", ":CodeCompanionActions<CR>", opt)
+map("v", "<leader>aa", ":CodeCompanionActions<CR>", opt)
+map("v", "<leader>ai", ":CodeCompanion /buffer ", { noremap = true, silent = false })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
+
 return pluginKeys

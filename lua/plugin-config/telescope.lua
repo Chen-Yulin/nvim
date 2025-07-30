@@ -43,4 +43,5 @@ else
 			-- 扩展插件配置
 		},
 	})
+	require("telescope").load_extension("fidget")
 end

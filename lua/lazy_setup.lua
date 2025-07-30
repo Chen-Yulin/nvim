@@ -55,34 +55,34 @@ require("lazy").setup({
 		config = function()
 			require("neo-tree").setup({
 				filesystem = {
-					commands = {
-						avante_add_files = function(state)
-							local node = state.tree:get_node()
-							local filepath = node:get_id()
-							local relative_path = require("avante.utils").relative_path(filepath)
-
-							local sidebar = require("avante").get()
-
-							local open = sidebar:is_open()
-							-- ensure avante sidebar is open
-							if not open then
-								require("avante.api").ask()
-								sidebar = require("avante").get()
-							end
-
-							sidebar.file_selector:add_selected_file(relative_path)
-
-							-- remove neo tree buffer
-							if not open then
-								sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
-							end
-						end,
-					},
-					window = {
-						mappings = {
-							["oa"] = "avante_add_files",
-						},
-					},
+					-- commands = {
+					-- 	avante_add_files = function(state)
+					-- 		local node = state.tree:get_node()
+					-- 		local filepath = node:get_id()
+					-- 		local relative_path = require("avante.utils").relative_path(filepath)
+					--
+					-- 		local sidebar = require("avante").get()
+					--
+					-- 		local open = sidebar:is_open()
+					-- 		-- ensure avante sidebar is open
+					-- 		if not open then
+					-- 			require("avante.api").ask()
+					-- 			sidebar = require("avante").get()
+					-- 		end
+					--
+					-- 		sidebar.file_selector:add_selected_file(relative_path)
+					--
+					-- 		-- remove neo tree buffer
+					-- 		if not open then
+					-- 			sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+					-- 		end
+					-- 	end,
+					-- },
+					-- window = {
+					-- 	mappings = {
+					-- 		["oa"] = "avante_add_files",
+					-- 	},
+					-- },
 				},
 			})
 		end,
@@ -234,66 +234,66 @@ require("lazy").setup({
 			},
 		},
 	},
-	{
-		"linux-cultist/venv-selector.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"mfussenegger/nvim-dap",
-			"mfussenegger/nvim-dap-python", --optional
-			{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-		},
-		lazy = false,
-		branch = "regexp", -- This is the regexp branch, use this for the new version
-		config = function()
-			require("venv-selector").setup()
-		end,
-		keys = {
-			{ ",v", "<cmd>VenvSelect<cr>" },
-		},
-	},
-	{
-		"yetone/avante.nvim",
-		branch = "main",
-		event = "VeryLazy",
-		lazy = false,
-		version = false, -- set this if you want to always pull the latest change
-		opts = {
-			-- add any opts here
-		},
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			--- The below dependencies are optional,
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
-			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
-			"stevearc/dressing.nvim", -- for input provider dressing
-			"folke/snacks.nvim", -- for input provider snacks
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
-					},
-				},
-			},
-		},
-	},
+	-- {
+	-- 	"linux-cultist/venv-selector.nvim",
+	-- 	dependencies = {
+	-- 		"neovim/nvim-lspconfig",
+	-- 		"mfussenegger/nvim-dap",
+	-- 		"mfussenegger/nvim-dap-python", --optional
+	-- 		{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	-- 	},
+	-- 	lazy = false,
+	-- 	branch = "regexp", -- This is the regexp branch, use this for the new version
+	-- 	config = function()
+	-- 		require("venv-selector").setup()
+	-- 	end,
+	-- 	keys = {
+	-- 		{ ",v", "<cmd>VenvSelect<cr>" },
+	-- 	},
+	-- },
+	-- {
+	-- 	"yetone/avante.nvim",
+	-- 	branch = "main",
+	-- 	event = "VeryLazy",
+	-- 	lazy = false,
+	-- 	version = false, -- set this if you want to always pull the latest change
+	-- 	opts = {
+	-- 		-- add any opts here
+	-- 	},
+	-- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+	-- 	build = "make",
+	-- 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		--- The below dependencies are optional,
+	-- 		"echasnovski/mini.pick", -- for file_selector provider mini.pick
+	-- 		"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+	-- 		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+	-- 		"ibhagwan/fzf-lua", -- for file_selector provider fzf
+	-- 		"stevearc/dressing.nvim", -- for input provider dressing
+	-- 		"folke/snacks.nvim", -- for input provider snacks
+	-- 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+	-- 		"zbirenbaum/copilot.lua", -- for providers='copilot'
+	-- 		{
+	-- 			-- support for image pasting
+	-- 			"HakonHarnes/img-clip.nvim",
+	-- 			event = "VeryLazy",
+	-- 			opts = {
+	-- 				-- recommended settings
+	-- 				default = {
+	-- 					embed_image_as_base64 = false,
+	-- 					prompt_for_file_name = false,
+	-- 					drag_and_drop = {
+	-- 						insert_mode = true,
+	-- 					},
+	-- 					-- required for Windows users
+	-- 					use_absolute_path = true,
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
 	"sindrets/diffview.nvim",
 	-- { "akinsho/git-conflict.nvim" },
 	{
@@ -332,4 +332,42 @@ require("lazy").setup({
 	-- 		require("mcphub").setup()
 	-- 	end,
 	-- },
+	{
+		"olimorris/codecompanion.nvim",
+		opts = {},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"j-hui/fidget.nvim",
+		},
+		init = function()
+			require("plugin-config.codecompanion.fidget-spinner"):init()
+		end,
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown", "codecompanion" },
+	},
+	{
+		"echasnovski/mini.diff",
+		config = function()
+			local diff = require("mini.diff")
+			diff.setup({
+				-- Disabled by default
+				source = diff.gen_source.none(),
+			})
+		end,
+	},
+	{
+		"HakonHarnes/img-clip.nvim",
+		opts = {
+			filetypes = {
+				codecompanion = {
+					prompt_for_file_name = false,
+					template = "[Image]($FILE_PATH)",
+					use_absolute_path = true,
+				},
+			},
+		},
+	},
 })
