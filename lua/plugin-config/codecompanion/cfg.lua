@@ -1,16 +1,10 @@
 require("codecompanion").setup({
 	strategies = {
 		chat = {
-			adapter = {
-				name = "copilot",
-				model = "claude-sonnet-4-20250514",
-			},
+			adapter = "gemini",
 		},
 		inline = {
-			adapter = {
-				name = "copilot",
-				model = "claude-sonnet-4-20250514",
-			},
+			adapter = "gemini",
 		},
 	},
 })
