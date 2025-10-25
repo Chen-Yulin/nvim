@@ -2,7 +2,6 @@
 -- { key: 语言 value: 配置文件 }
 -- key 必须为下列网址列出的名称
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
-local util = require("lspconfig.util")
 local masonStatus, mason = pcall(require, "mason")
 if not masonStatus then
 	vim.notify("Can't find mason")
@@ -14,10 +13,8 @@ if not masonconfigStatus then
 	vim.notify("Can't find mason-lspconfig")
 	return
 end
-
-local lspconfigStatus, lspconfig = pcall(require, "lspconfig")
-if not lspconfigStatus then
-	vim.notify("没有找到 lspconfig")
+if not vim.lsp.config then
+	vim.notify("vim.lsp.config not available - please update to Neovim 0.11+")
 	return
 end
 
@@ -79,7 +76,7 @@ end
 ]]
 --
 
-local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp-mono"
+-- local omnisharp_bin = "/home/cyl/.local/share/nvim/mason/bin/omnisharp-mono"
 -- if not lspconfig.omnisharp_mono then
 -- 	lspconfig.omnisharp_mono = {
 -- 		default_config = {
@@ -95,27 +92,24 @@ local on_attach = require("lsp.lspconfig").on_attach
 
 -- local util = require 'lspconfig.util'
 -- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
-lspconfig.clangd.setup({
+vim.lsp.config.clangd = {
 	cmd = {
-
 		"clangd",
-
 		"--background-index",
-
 		"--suggest-missing-includes",
-
 		"--clang-tidy",
-
 		"--header-insertion=never",
 	},
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+	root_dir = vim.fs.dirname,
+}
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-lspconfig.lua_ls.setup({
+vim.lsp.config.lua_ls = {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -125,47 +119,21 @@ lspconfig.lua_ls.setup({
 	},
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+	filetypes = { "lua" },
+	root_dir = vim.fs.dirname,
+}
 
-lspconfig.svlangserver.setup({
-	-- https://github.com/imc-trading/svlangserver
-	on_init = function(client)
-		local path = client.workspace_folders[1].name
+-- vim.lsp.config.eslint = {
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
+-- 	root_dir = vim.fs.dirname,
+-- }
 
-		if path == "/path/to/project1" then
-			client.config.settings.systemverilog = {
-				includeIndexing = { "**/*.{sv,svh}" },
-				excludeIndexing = { "test/**/*.sv*" },
-				defines = {},
-				launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
-				formatCommand = "/tools/verible-verilog-format",
-			}
-		elseif path == "/path/to/project2" then
-			client.config.settings.systemverilog = {
-				includeIndexing = { "**/*.{sv,svh}" },
-				excludeIndexing = { "sim/**/*.sv*" },
-				defines = {},
-				launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
-				formatCommand = "/tools/verible-verilog-format",
-			}
-		end
-
-		client.notify("workspace/didChangeConfiguration")
-		return true
-	end,
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig.eslint.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-Pyright_cap = capabilities
+local Pyright_cap = vim.deepcopy(capabilities)
 Pyright_cap.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 
-lspconfig.pyright.setup({
+vim.lsp.config.pyright = {
 	capabilities = Pyright_cap,
 	on_attach = on_attach,
 	settings = {
@@ -173,32 +141,30 @@ lspconfig.pyright.setup({
 			disableOrganizeImports = true, -- Using Ruff
 		},
 	},
-})
+	filetypes = { "python" },
+	root_dir = vim.fs.dirname,
+}
 
-lspconfig.html.setup({
+-- HTML Language Server configuration
+vim.lsp.config.html = {
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+	filetypes = { "html" },
+	root_dir = vim.fs.dirname,
+}
 
-lspconfig.marksman.setup({
+-- Marksman (Markdown) configuration
+vim.lsp.config.marksman = {
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
---lspconfig.ltex.setup{
---    capabilities = capabilities,
---    on_attach = on_attach,
---}
+	filetypes = { "markdown", "markdown.mdx" },
+	root_dir = vim.fs.dirname,
+}
 
--- lspconfig.omnisharp_mono.setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	settings = {
--- 		useModernNet = false,
--- 		monoPath = vim.fn.system({ "which", "mono" }),
--- 	},
--- })
-
-lspconfig.gdscript.setup({
+-- GDScript configuration
+vim.lsp.config.gdscript = {
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+	filetypes = { "gdscript" },
+	root_dir = vim.fs.dirname,
+}
