@@ -103,7 +103,10 @@ vim.lsp.config.clangd = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-	root_dir = vim.fs.dirname,
+    root_dir = function(fname)
+        return vim.fs.root(fname, { ".git", "compile_commands.json", "Makefile", "CMakeLists.txt" })
+            or vim.fs.dirname(fname)
+    end,
 }
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -120,7 +123,6 @@ vim.lsp.config.lua_ls = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = { "lua" },
-	root_dir = vim.fs.dirname,
 }
 
 -- vim.lsp.config.eslint = {
@@ -142,7 +144,6 @@ vim.lsp.config.pyright = {
 		},
 	},
 	filetypes = { "python" },
-	root_dir = vim.fs.dirname,
 }
 
 -- HTML Language Server configuration
@@ -150,7 +151,6 @@ vim.lsp.config.html = {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "html" },
-	root_dir = vim.fs.dirname,
 }
 
 -- Marksman (Markdown) configuration
@@ -158,7 +158,6 @@ vim.lsp.config.marksman = {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "markdown", "markdown.mdx" },
-	root_dir = vim.fs.dirname,
 }
 
 -- GDScript configuration
@@ -166,5 +165,13 @@ vim.lsp.config.gdscript = {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "gdscript" },
-	root_dir = vim.fs.dirname,
 }
+
+vim.lsp.enable({
+    "gdscript",
+    "marksman",
+    "html",
+    "pyright",
+    "clangd",
+    "lua_ls"
+})
