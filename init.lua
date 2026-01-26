@@ -53,8 +53,9 @@ require("plugin-config.colorful-diff")
 require("plugin-config.neocodeium_cfg")
 require("plugin-config.neotree_cfg")
 -- require("plugin-config.mcp-hub")
-require("plugin-config.codecompanion.cfg")
-require("plugin-config.codecompanion.fidget-spinner")
+-- require("plugin-config.codecompanion.cfg")
+-- require("plugin-config.codecompanion.fidget-spinner")
+require("plugin-config.leetcode_cfg")
 require("my_cmd")
 vim.cmd([[
 set wrap
