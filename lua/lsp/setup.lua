@@ -36,7 +36,7 @@ mason_config.setup({
 		"svlangserver",
 		"html",
 		"marksman",
-		-- "omnisharp",
+		"omnisharp",
 		"ltex",
 		"ruff",
 	},
@@ -103,10 +103,10 @@ vim.lsp.config.clangd = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-    root_dir = function(fname)
-        return vim.fs.root(fname, { ".git", "compile_commands.json", "Makefile", "CMakeLists.txt" })
-            or vim.fs.dirname(fname)
-    end,
+	root_dir = function(fname)
+		return vim.fs.root(fname, { ".git", "compile_commands.json", "Makefile", "CMakeLists.txt" })
+			or vim.fs.dirname(fname)
+	end,
 }
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -167,11 +167,27 @@ vim.lsp.config.gdscript = {
 	filetypes = { "gdscript" },
 }
 
+-- OmniSharp (C#) configuration
+-- Use omnisharp-mono for .NET Framework projects (ONI mods)
+vim.lsp.config.omnisharp = {
+	cmd = { "OmniSharp", "--languageserver" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "cs" },
+	root_dir = function(fname)
+		return vim.fs.root(fname, { "*.sln", "*.csproj", ".git" }) or vim.fs.dirname(fname)
+	end,
+	enable_roslyn_analyzers = true,
+	organize_imports_on_format = true,
+	enable_import_completion = true,
+}
+
 vim.lsp.enable({
-    "gdscript",
-    "marksman",
-    "html",
-    "pyright",
-    "clangd",
-    "lua_ls"
+	"gdscript",
+	"marksman",
+	"html",
+	"pyright",
+	"clangd",
+	"lua_ls",
+	"omnisharp",
 })

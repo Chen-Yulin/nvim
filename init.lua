@@ -56,6 +56,8 @@ require("plugin-config.neotree_cfg")
 -- require("plugin-config.codecompanion.cfg")
 -- require("plugin-config.codecompanion.fidget-spinner")
 require("plugin-config.leetcode_cfg")
+require("plugin-config.remote-nvim_cfg")
+require("plugin-config.lsp_signature")
 require("my_cmd")
 vim.cmd([[
 set wrap

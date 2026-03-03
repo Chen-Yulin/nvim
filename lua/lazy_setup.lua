@@ -147,7 +147,9 @@ require("lazy").setup({
 	},
 	"Civitasv/cmake-tools.nvim",
 	"Chen-Yulin/transparent.nvim",
-	"ggandor/leap.nvim",
+	{
+		url = "https://codeberg.org/andyg/leap.nvim",
+	},
 	"Chen-Yulin/dashboard-nvim",
 	"ahmedkhalf/project.nvim",
 	-- which key
@@ -405,5 +407,15 @@ require("lazy").setup({
 		opts = {
 			-- configuration goes here
 		},
+	},
+	{
+		"amitds1997/remote-nvim.nvim",
+		version = "*", -- Pin to GitHub releases
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- For standard functions
+			"MunifTanjim/nui.nvim", -- To build the plugin UI
+			"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+		},
+		config = true,
 	},
 })
